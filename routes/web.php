@@ -1,5 +1,5 @@
 <?php
-
+use GuzzleHttp\Client;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $client = new Client();
+    $res = $client->request('GET', 'http://172.16.110.214:8080/?rest_route=/wp/v2/posts');
+
+    return $res->getBody();
 });
 //Route::get('/', function() {
   // return response()->json([
